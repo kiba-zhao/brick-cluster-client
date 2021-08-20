@@ -1,0 +1,32 @@
+/**
+ * @fileOverview 工作进程模块
+ * @name worker.js
+ * @author kiba.x.zhao <kiba.rain@qq.com>
+ * @license MIT
+ */
+'use strict';
+
+const { defineProviderFactory } = require('brick-engine');
+const { RegistryClient, setupRegistryClient, setupListenerPlugin, defineListener } = require('../../../..');
+
+class Worker {
+
+  /**
+   * 工作进程模块构建函数
+   * @param {RegistryClient} registry
+   */
+  constructor(registry) {
+    registry.publish({ eventName: 'agent', msg: 'publish with worker' });
+  }
+
+  onWorkerEvent(reg) {
+    console.log(`Worker Event ${JSON.stringify(reg)}`);
+  }
+}
+
+exports.Worker = Worker;
+
+defineProviderFactory(Worker, { deps: [{ id: RegistryClient }] });
+setupRegistryClient(Worker, { isLeader: false, isBroadcast: true });
+setupListenerPlugin(Worker);
+defineListener(Worker, { reg: { eventName: 'worker' }, method: 'onWorkerEvent' });

@@ -56,7 +56,7 @@
     "@types/node": "^14.14.20",
     "babel-eslint": "^10.1.0",
     "brick-cluster": "^0.2.0",
-    "brick-engine": "file:../brick-engine",
+    "brick-engine": "^0.10.3",
     "coffee": "^5.4.0",
     "eslint": "^7.31.0",
     "eslint-config-egg": "^9.0.0",
@@ -77,7 +77,7 @@
     "sdk-base": "^3.6.0"
   },
   "peerDependencies": {
-    "brick-engine": "^0.10.1"
+    "brick-engine": "^0.10.3"
   },
   "husky": {
     "hooks": {

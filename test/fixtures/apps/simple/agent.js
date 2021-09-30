@@ -7,7 +7,7 @@
 'use strict';
 
 const { defineProviderFactory } = require('brick-engine');
-const { RegistryClient, setupRegistryClient, setupListenerPlugin, defineListener } = require('../../../..');
+const { RegistryClient, clusterClientSetup, defineListener } = require('../../../..');
 
 class Agent {
   /**
@@ -28,6 +28,5 @@ class Agent {
 exports.Agent = Agent;
 
 defineProviderFactory(Agent, { deps: [{ id: RegistryClient }] });
-setupRegistryClient(Agent, { isLeader: true, isBroadcast: true });
-setupListenerPlugin(Agent);
 defineListener(Agent, { reg: { eventName: 'agent' }, method: 'onAgentEvent' });
+clusterClientSetup(Agent, { registry: { isLeader: true, isBroadcast: true }, listener: true });

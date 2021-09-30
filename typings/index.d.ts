@@ -1,6 +1,5 @@
 import { RegistryClient } from "./lib";
-import { setupRegistryClient } from "./lib";
-import { setupListenerPlugin } from "./lib";
+import { clusterClientSetup } from "./lib";
 import { ListenerPlugin } from "./plugins";
 import { defineListener } from "./plugins";
-export { RegistryClient, setupRegistryClient, setupListenerPlugin, ListenerPlugin, defineListener };
+export { RegistryClient, clusterClientSetup, ListenerPlugin, defineListener };

@@ -6,7 +6,7 @@
  */
 'use strict';
 
-const { RegistryClient, setupRegistryClient, setupListenerPlugin } = require('./lib');
+const { RegistryClient, clusterClientSetup } = require('./lib');
 const { ListenerPlugin, defineListener } = require('./plugins');
 
-module.exports = { RegistryClient, setupRegistryClient, setupListenerPlugin, ListenerPlugin, defineListener };
+module.exports = { RegistryClient, clusterClientSetup, ListenerPlugin, defineListener };

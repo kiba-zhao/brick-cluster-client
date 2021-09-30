@@ -7,7 +7,7 @@
 'use strict';
 
 const { defineProviderFactory } = require('brick-engine');
-const { RegistryClient, setupRegistryClient, setupListenerPlugin, defineListener } = require('../../../..');
+const { RegistryClient, clusterClientSetup, defineListener } = require('../../../..');
 
 class Worker {
 
@@ -27,6 +27,5 @@ class Worker {
 exports.Worker = Worker;
 
 defineProviderFactory(Worker, { deps: [{ id: RegistryClient }] });
-setupRegistryClient(Worker, { isLeader: false, isBroadcast: true });
-setupListenerPlugin(Worker);
 defineListener(Worker, { reg: { eventName: 'worker' }, method: 'onWorkerEvent' });
+clusterClientSetup(Worker, { registry: { isLeader: false, isBroadcast: true } });

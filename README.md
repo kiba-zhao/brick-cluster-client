@@ -26,7 +26,7 @@ npm install --save brick-cluster-client
 ``` javascript
 
 const { defineProviderFactory } = require('brick-engine');
-const {RegistryClient, setupRegistryClient, setupListenerPlugin, defineListener } = require('brick-cluster-client');
+const {RegistryClient, clusterClientSetup, defineListener } = require('brick-cluster-client');
 
 class Agent {
   /**
@@ -48,12 +48,12 @@ exports.Agent = Agent;
 
 // 定义Agent对象构建工厂
 defineProviderFactory(Agent, { deps: [{ id: RegistryClient }] });
-// 安装RegistryClient
-setupRegistryClient(Agent, { isLeader: true, isBroadcast: true });
-// 安装监听器插件
-setupListenerPlugin(Agent);
+
 // 定义绑定监听事件
 defineListener(Agent, { reg: { eventName: 'agent' }, method: 'onAgentEvent' });
+
+// 安装RegistryClient,以及监听器插件
+clusterClientSetup(Agent, { registry: { isLeader: true, isBroadcast: true } });
 
 ```
 

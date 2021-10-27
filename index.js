@@ -8,5 +8,6 @@
 
 const { RegistryClient, clusterClientSetup } = require('./lib');
 const { ListenerPlugin, defineListener } = require('./plugins');
+const { ClusterClient } = require('./decorators');
 
-module.exports = { RegistryClient, clusterClientSetup, ListenerPlugin, defineListener };
+module.exports = { RegistryClient, clusterClientSetup, ListenerPlugin, defineListener, ClusterClient };

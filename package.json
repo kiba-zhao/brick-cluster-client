@@ -27,6 +27,7 @@
     "package.json",
     "bin",
     "lib",
+    "decorators",
     "plugins",
     "dist"
   ],
@@ -94,6 +95,7 @@
       "bin/**/*.js",
       "lib/**/*.js",
       "plugins/**/*.js",
+      "decorators/**/*.js",
       "!**/index.js"
     ],
     "coverageReporters": [

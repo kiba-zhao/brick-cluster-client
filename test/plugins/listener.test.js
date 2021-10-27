@@ -8,6 +8,7 @@
 
 const { MODULE_KEY, ListenerPlugin, defineListener } = require('../../plugins/listener');
 const { RegistryClient } = require('../../lib/registry_client');
+const { ClusterClient } = require('../../decorators');
 const { Provider } = require('brick-engine');
 const faker = require('faker');
 
@@ -35,6 +36,15 @@ describe('plugins/listener', () => {
       it('simple', () => {
         const target = () => {};
         defineListener(target, { method: faker.datatype.string() });
+
+        expect(plugin.match(target)).toBeTruthy();
+
+      });
+
+      it('simple with decorators', () => {
+        const target = () => {};
+        const decorator = ClusterClient({ method: faker.datatype.string() });
+        decorator(target);
 
         expect(plugin.match(target)).toBeTruthy();
 
